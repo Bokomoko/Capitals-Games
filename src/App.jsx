@@ -11,11 +11,12 @@ function App() {
   const [region , setRegion] = React.useState(null)
 
   async function loadRegion( aRegion ) {
-    const listOfCountries = await fetch( API_REGION_URL + region )
+    const listOfCountries = await fetch( API_REGION_URL + aRegion )
     const countries = {}
     listOfCountries.forEach( (country)=>{
       countries[country.name.common] = contry.capital
     })
+    setRegion(aRegion)
     setList({ ... countries} )
     
   }
@@ -23,12 +24,12 @@ function App() {
   return (
     <div>
       Select the region you want to play 
-      <select>
-        {regions.map( (e)=> <option onClick={
-          () => {
+      <select> 
+        {regions.map( (region)=> <option key={region} onClick={
+          (e) => {
             loadRegion( e.target.value)
           }
-        }>{e}</option>)}
+        }>{region}</option>)}
       </select>
       {region && <Capitals listOfCapitals={list}/> } 
     </div>
