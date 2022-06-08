@@ -14,7 +14,7 @@ function App() {
     const listOfCountries = await fetch( API_REGION_URL + aRegion )
     const countries = {}
     listOfCountries.forEach( (country)=>{
-      countries[country.name.common] = contry.capital
+      countries[country.name.common] = country.capital
     })
     setRegion(aRegion)
     setList({ ... countries} )
